@@ -1,1 +1,37 @@
-init
+Mason
+
+Bun, Deno
+
+Content-type
+
+Postman
+
+
+yarn
+pnpm
+
+
+
+express.js
+
+flag
+
+dependencies
+devDependencies
+gobal dependencies
+
+--save-dev
+
+koa2
+fastapi
+
+nest.js
+
+npm init -y
+npm i {package_name} {package_name} {package_name}
+npm i express express2 express3
+npm i -D {dev_packaged}
+
+npm uninstall {package_name} {package_name} {package_name}
+
+npm run {script_name}
