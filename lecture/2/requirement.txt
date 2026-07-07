@@ -1,0 +1,89 @@
+### 项目需求
+
+**基础部分：Movies**
+
+- 列表页：列出所有电影，支持关键字搜索、按评分排序、分页
+- 详情页：通过 ID 获取电影详情
+- 新增电影
+- 修改电影信息
+- 删除电影
+
+**扩展部分：Reviews**
+
+- 给电影添加评论（含评分 1-5）
+- 获取某部电影的所有评论
+
+### 数据格式
+
+```javascript
+{
+  id: 1,
+  title: "Inception",
+  description: "A skilled thief steals secrets from dreams.",
+  types: ["Sci-Fi"],
+  averageRating: 4.5,
+  reviews: [
+    { id: 1, content: "Amazing movie!", rating: 5 },
+    { id: 2, content: "Great visuals.", rating: 4 },
+  ],
+}
+```
+
+API endpoints
+HTTP method
+pathname
+query params
+body
+status code
+
+GET /v1/movies
+page = 1
+pageSize = 100
+keyword = thief
+sort = -rating
+200
+
+
+order = desc
+q = (query)
+search =
+
+
+GET /v1/movies/:id
+200 404
+
+POST /v1/movies
+Body:
+{
+    title: 'Inception',
+    description: "A skilled thief steals secrets from dreams.",
+    types: ["Sci-Fi"]
+}
+201 400
+
+
+PUT /v1/movies/:id
+Body:
+{
+    title: 'Inception',
+    description: "A skilled thief steals secrets from dreams.",
+    types: ["Sci-Fi"]
+}
+200 400 404
+
+
+Delete /v1/movies/:id
+204 (No content) 404
+
+幂等性
+
+POST /v1/movies/:id/reviews
+Body
+{
+  content: "Amazing movie!",
+  rating: 5
+}
+404 400 201
+
+GET /v1/movies/:id/reviews
+404 200

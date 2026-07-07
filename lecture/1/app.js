@@ -1,6 +1,18 @@
 const express = require('express');
 const app = express();
 
+// router
+// /users CRUD 5
+// /products
+// /movies
+// GET /users
+// const userRouter = express.Router();
+// app.get('/users',(req,res)=>{});
+// app.use('/users', userRouter);
+// "/users/"
+// "/users"
+// userRouter.get('/',(req,res)=>{});
+
 // global middleware
 // body-parser
 app.use(express.json());

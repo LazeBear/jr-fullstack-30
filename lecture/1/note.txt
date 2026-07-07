@@ -27,6 +27,70 @@ fastapi
 
 nest.js
 
+rest
+representational state transfer
+
+resource
+
+GET /users
+
+restful
+api
+web api
+
+
+1. versioning
+example.com/v1/users
+example.com/v2/users
+v1.example.com/users
+
+
+2. 用名词描述资源，并且复数形式
+/users
+/products
+
+/getUsers
+
+3. 用http method来表示操作的方法
+GET -> Read
+POST -> Create
+PUT -> Replace (Update)
+PATCH -> Patch (Update)
+DELETE -> Delete
+
+4. 可以使用嵌套路径定位资源
+GET /v1/users/:userId/notes
+GET /v1/notes/:noteId
+
+5. 正确使用状态码来表示结果
+200 -> ok
+201 -> created
+204 -> deleted
+
+6. 返回可读的错误信息
+{
+  errorMessage:"xxx invalid"
+}
+
+{
+  errorCode: "ERR101"
+}
+
+{
+  errorMessage:"xxx invalid",
+  errorCode: "ERR101"
+}
+
+400 -> Bad Request
+
+7. 分页与限制limit
+GET /users?page=1&pageSize=10
+GET /users?page=2&pageSize=10
+
+cursor=xxxx&limit=100
+
+
+
 npm init -y
 npm i {package_name} {package_name} {package_name}
 npm i express express2 express3
