@@ -1,0 +1,16 @@
+movie-api/
+  package.json
+  src/
+    |-- index.js
+    |-- routes
+      |-- movie.router.js
+      |-- user.router.js
+      |-- index.js
+    |-- controller
+      |-- movie.controller.js
+      |-- user.controller.js
+    |-- model
+      |-- movie.model.js
+      |-- user.model.js
+    |-- middleware
+      |-- cors.middleware.js

@@ -1,30 +1,6 @@
-const express = require('express');
-
-const app = express();
-app.use(express.json());
-app.use(cors);
-
-const movies = [
-  {
-    id: 0,
-    title: 'Inception',
-    description: 'A skilled thief steals secrets from dreams.',
-    types: ['Sci-Fi'],
-    averageRating: 4.5,
-    reviews: [
-      { id: 1, content: 'Amazing movie!', rating: 5 },
-      { id: 2, content: 'Great visuals.', rating: 4 },
-    ],
-  },
-];
+const movies = [];
 let nextId = 1;
-
-// uuid, nanoid
-
-const movieRouter = express.Router();
-app.use('/v1/movies', movieRouter);
-
-movieRouter.get('/', (req, res) => {
+const getAllMovies = (req, res) => {
   let { keyword, sort, page = 1, limit = 10 } = req.query;
   page = parseInt(page);
   limit = parseInt(limit);
@@ -59,9 +35,9 @@ movieRouter.get('/', (req, res) => {
   filteredMovies = filteredMovies.slice(startIndex, endIndex);
 
   res.json(filteredMovies);
-});
+};
 
-movieRouter.post('/', (req, res) => {
+const createMovie = (req, res) => {
   const { title, description, types } = req.body;
   // data validation
   // fail fast
@@ -86,9 +62,9 @@ movieRouter.post('/', (req, res) => {
 
   movies.push(movie);
   res.status(201).json(movie);
-});
+};
 
-movieRouter.get('/:id', (req, res) => {
+const getMovieById = (req, res) => {
   const movie = movies.find((movie) => movie.id === parseInt(req.params.id));
   if (!movie) {
     res.status(404).json({
@@ -97,9 +73,9 @@ movieRouter.get('/:id', (req, res) => {
     return;
   }
   res.json(movie);
-});
+};
 
-movieRouter.put('/:id', (req, res) => {
+const updateMovieById = (req, res) => {
   const movie = movies.find((movie) => movie.id === parseInt(req.params.id));
   if (!movie) {
     res.status(404).json({
@@ -122,9 +98,9 @@ movieRouter.put('/:id', (req, res) => {
     movie.types = types;
   }
   res.json(movie);
-});
+};
 
-movieRouter.delete('/:id', (req, res) => {
+const deleteMovieById = (req, res) => {
   const movieIndex = movies.findIndex(
     (movie) => movie.id === parseInt(req.params.id),
   );
@@ -138,9 +114,9 @@ movieRouter.delete('/:id', (req, res) => {
   movies.splice(movieIndex, 1);
   // res.status(204).send();
   res.sendStatus(204);
-});
+};
 
-movieRouter.post('/:id/reviews', (req, res) => {
+const createReview = (req, res) => {
   // reference, value
   // primitive type, string, number
   const movie = movies.find((movie) => movie.id === parseInt(req.params.id));
@@ -169,9 +145,9 @@ movieRouter.post('/:id/reviews', (req, res) => {
   ).toFixed(2);
 
   res.status(201).json(newReview);
-});
+};
 
-movieRouter.get('/:id/reviews', (req, res) => {
+const getReviews = (req, res) => {
   const movie = movies.find((movie) => movie.id === parseInt(req.params.id));
   if (!movie) {
     res.status(404).json({
@@ -180,18 +156,14 @@ movieRouter.get('/:id/reviews', (req, res) => {
     return;
   }
   res.json(movie.reviews);
-});
+};
 
-app.listen(3000, () => {
-  console.log('Server listening on port 3000');
-});
-
-// 序列化，反序列化
-// variable hoisting
-
-function cors(req, res, next) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', '*');
-  res.setHeader('Access-Control-Allow-Headers', '*');
-  next();
-}
+module.exports = {
+  getAllMovies,
+  createMovie,
+  getMovieById,
+  updateMovieById,
+  deleteMovieById,
+  createReview,
+  getReviews,
+};
