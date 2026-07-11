@@ -1,0 +1,31 @@
+[2026-07-11T09:27:17.299Z] [info]: Server listening on port 3000
+[2026-07-11T09:28:11.253Z] [info]: Server listening on port 3000
+[2026-07-11T09:30:39.914Z] [info]: Server listening on port 3000
+[2026-07-11T09:30:49.549Z] [info]: Server listening on port 3000
+[2026-07-11T09:31:08.899Z] [info]: Server listening on port 3000
+[2026-07-11T09:31:14.699Z] [info]: [0mGET /v1/movies?keyword=thief&sort=-rating&page=1&limit=2 [32m200[0m 6.700 ms - 2[0m
+[2026-07-11T09:36:48.545Z] [info]: Server listening on port 3000
+[2026-07-11T09:36:53.860Z] [info]: [0mGET /v1/movies?keyword=thief&sort=-rating&page=1&limit=2 [32m200[0m 13.630 ms - 2[0m
+[2026-07-11T09:36:57.296Z] [info]: [0mGET /v1/movies?keyword=thief&sort=-rating&page=1&limit=2 [33m429[0m 1.625 ms - 42[0m
+[2026-07-11T09:37:42.381Z] [info]: Server listening on port 3000
+[2026-07-11T09:37:44.922Z] [info]: [0mGET /v1/movies?keyword=thief&sort=-rating&page=1&limit=2 [31m500[0m 1.391 ms - 1440[0m
+[2026-07-11T09:37:53.855Z] [info]: Server listening on port 3000
+[2026-07-11T09:37:56.285Z] [info]: [0mGET /v1/movies?keyword=thief&sort=-rating&page=1&limit=2 [32m200[0m 1.590 ms - 2[0m
+[2026-07-11T09:38:13.476Z] [info]: Server listening on port 3000
+[2026-07-11T09:38:17.136Z] [info]: [0mGET /v1/movies?keyword=thief&sort=-rating&page=1&limit=2 [32m200[0m 1.655 ms - 2[0m
+[2026-07-11T09:38:17.828Z] [info]: [0mGET /v1/movies?keyword=thief&sort=-rating&page=1&limit=2 [32m200[0m 1.055 ms - 2[0m
+[2026-07-11T09:38:18.556Z] [info]: [0mGET /v1/movies?keyword=thief&sort=-rating&page=1&limit=2 [32m200[0m 1.170 ms - 2[0m
+[2026-07-11T09:38:24.239Z] [info]: Server listening on port 3000
+[2026-07-11T09:48:14.614Z] [info]: Server listening on port 3000
+[2026-07-11T09:48:28.570Z] [info]: [0mGET / [33m404[0m 1.672 ms - 139[0m
+[2026-07-11T09:48:34.798Z] [info]: [0mGET /api-docs [36m301[0m 2.874 ms - 158[0m
+[2026-07-11T09:48:34.804Z] [info]: [0mGET /api-docs/ [32m200[0m 3.300 ms - 3106[0m
+[2026-07-11T09:48:34.819Z] [info]: [0mGET /api-docs/swagger-ui-init.js [32m200[0m 1.290 ms - 41284[0m
+[2026-07-11T09:48:34.821Z] [info]: [0mGET /api-docs/swagger-ui.css [32m200[0m 4.261 ms - 178977[0m
+[2026-07-11T09:48:34.826Z] [info]: [0mGET /api-docs/swagger-ui-standalone-preset.js [32m200[0m 4.554 ms - 256694[0m
+[2026-07-11T09:48:34.830Z] [info]: [0mGET /api-docs/swagger-ui-bundle.js [32m200[0m 3.365 ms - 1537593[0m
+[2026-07-11T09:48:34.967Z] [info]: [0mGET /api-docs/favicon-32x32.png [32m200[0m 2.160 ms - 628[0m
+[2026-07-11T09:48:39.910Z] [info]: [0mGET /api-docs/favicon-32x32.png [36m304[0m 1.297 ms - -[0m
+[2026-07-11T09:48:52.998Z] [info]: [0mGET /api-docs/favicon-32x32.png [36m304[0m 1.782 ms - -[0m
+[2026-07-11T12:00:32.043Z] [info]: Server listening on port 3000
+[2026-07-11T12:00:54.939Z] [info]: Server listening on port 3000

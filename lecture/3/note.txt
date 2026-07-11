@@ -1,0 +1,87 @@
+SQL
+
+MySQL
+PostgreSQL
+SQLite
+
+NoSQL
+MongoDB
+Redis
+Neo4J
+Cassandra
+
+
+BSON
+
+
+A B
+1 1
+
+A B
+1 1
+M 1
+
+A B
+1 M
+M 1
+M:N
+
+// user collection
+[
+  {
+    _id: 'U1',
+    name: 'mason',
+    addresses: [
+      {
+        _id: 'A1',
+        city: 'brisbane',
+      },
+      {
+        _id: 'A2',
+        city: 'sydney',
+      },
+    ]
+  },
+  {
+    _id: 'U2',
+    name: 'jason',
+    addresses: [
+      {
+        _id: 'A1',
+        city: 'brisbane',
+      },
+      {
+        _id: 'A2',
+        city: 'sydney',
+      },
+    ]
+  }
+]
+
+// address
+
+[
+  {
+    _id: 'A1',
+    city: 'brisbane',
+    postcode: 4001
+  },
+  {
+    _id: 'A2',
+    city: 'sydney',
+    postcode: 2000
+  },
+]
+
+denormalization
+
+16MB
+
+ACID
+
+atomicity
+原子性
+consistency
+isolation
+durability
+
