@@ -56,7 +56,7 @@ const movieSchema = new mongoose.Schema(
   },
 );
 
-movieSchema.pre('Save', function () {
+movieSchema.pre('save', function () {
   if (this.reviews.length === 0) {
     this.averageRating = 0;
     return;

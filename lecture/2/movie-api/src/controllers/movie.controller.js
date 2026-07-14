@@ -14,7 +14,7 @@ const getAllMovies = async (req, res) => {
     ];
   }
 
-  const sortOption = {};
+  let sortOption = {};
   if (sort === 'rating') {
     sortOption = { averageRating: 1 };
   } else if (sort === '-rating') {
@@ -92,7 +92,7 @@ const updateMovieById = async (req, res) => {
 };
 
 const deleteMovieById = async (req, res) => {
-  const movie = await Movie.findByIdAndDelete(req.pramrs.id).exec();
+  const movie = await Movie.findByIdAndDelete(req.params.id).exec();
   if (!movie) {
     res.status(404).json({
       message: 'Movie not found',
