@@ -75,3 +75,34 @@ jwt token
 xyz1234
 redis
 
+
+
+zod
+joi
+
+
+hash
+
+123 + SALT -> XYZ
+123 + SALT -> XYZ
+
+123 -> XYZ
+123 -> XYZ
+
+RANDOM
+123 + SALT1 -> XYZ1
+123 + SALT2 -> YXZ1
+
+authentication
+authorization
+
+jwt token
+session id
+cookie
+
+
+browser localstorage, cookie
+base64
+
+access token
+refresh token
