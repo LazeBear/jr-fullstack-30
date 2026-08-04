@@ -106,3 +106,20 @@ base64
 
 access token
 refresh token
+
+
+ACL access control list
+
+RBAC (role Based access control)
+ABAC (attribute Based access control)
+
+cronjob
+
+soft delete (user + deletedAt
+hard delete
+
+service layer
+
+SOLID, DRY
+
+request id

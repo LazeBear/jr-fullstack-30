@@ -1,8 +1,15 @@
 const express = require('express');
 const authController = require('./auth.controller');
 const { validateBody } = require('../middleware/validation.middleware');
-const { registerSchema, loginSchema } = require('./auth.validation');
+const {
+  registerSchema,
+  loginSchema,
+  forgotPasswordSchema,
+  verifyCodeSchema,
+  resetPasswordSchema,
+} = require('./auth.validation');
 const authGuard = require('../middleware/authGuard.middleware');
+const roleGuard = require('../middleware/roleGuard.middleware');
 
 const authRouter = express.Router();
 
@@ -12,9 +19,37 @@ authRouter.post(
   authController.register,
 );
 authRouter.post('/login', validateBody(loginSchema), authController.login);
+authRouter.post(
+  '/forgot-password',
+  validateBody(forgotPasswordSchema),
+  authController.forgotPassword,
+);
+authRouter.post(
+  '/verify-code',
+  validateBody(verifyCodeSchema),
+  authController.verifyCode,
+);
+authRouter.post(
+  '/reset-password',
+  validateBody(resetPasswordSchema),
+  authController.resetPassword,
+);
 
-authRouter.get('/private', authGuard,(req,res)=>{
-  res.json('ok')
-})
+authRouter.get('/private', authGuard, (req, res) => {
+  res.json('ok');
+});
+
+authRouter.get('/admin', authGuard, roleGuard('admin'), (req, res) => {
+  res.json('admin only');
+});
+
+authRouter.get(
+  '/admin-or-user',
+  authGuard,
+  roleGuard('admin', 'user'),
+  (req, res) => {
+    res.json('admin or user');
+  },
+);
 
 module.exports = authRouter;
