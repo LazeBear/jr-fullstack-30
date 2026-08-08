@@ -123,3 +123,24 @@ service layer
 SOLID, DRY
 
 request id
+
+
+aws S3
+bucket
+
+Presigned URL
+POST/PUT
+
+client -> api server (PDF 1MB)
+api server -> s3 (give me a presigned url) -> client
+client -> presigned url -> s3 -> file key
+client -> file key -> api server -> save to db
+
+
+sdk
+
+/tmp
+s3 -> lifecycle rules
+
+/avatars
+/resumes

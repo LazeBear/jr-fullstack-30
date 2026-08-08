@@ -3,6 +3,7 @@ const ForbiddenException = require('../exceptions/forbidden.exception');
 const NotFoundException = require('../exceptions/NotFound.exception');
 const logger = require('../utils/logger');
 const { hashPassword, comparePassword } = require('../utils/password');
+const { deleteObject } = require('../utils/s3');
 const { MAX_PASSWORD_HISTORY } = require('./constants');
 const User = require('./user.model');
 // GET /v1/users/:id
@@ -12,11 +13,6 @@ const getMe = async (req, res) => {
   const user = await User.findById(userId).exec();
   if (!user) {
     throw new NotFoundException('User not found');
-  }
-  if (user._id !== userId) {
-    throw new ForbiddenException(
-      'Current user is not allowed to perform this action',
-    );
   }
   res.json({
     success: true,
@@ -33,10 +29,6 @@ const updateMe = async (req, res) => {
   if (!user) {
     throw new NotFoundException('User not found');
   }
-  // TODO
-  // if (user._id !== userId) {
-  //   throw new ForbiddenException("Current user is not allowed to perform this action")
-  // }
   res.json({
     success: true,
     data: user,
@@ -49,11 +41,6 @@ const updateMyPassword = async (req, res) => {
   const user = await User.findById(userId).exec();
   if (!user) {
     throw new NotFoundException('User not found');
-  }
-  if (user._id !== userId) {
-    throw new ForbiddenException(
-      'Current user is not allowed to perform this action',
-    );
   }
   const isMatched = await comparePassword(currentPassword, user.password);
   if (!isMatched) {
@@ -81,6 +68,48 @@ const updateMyPassword = async (req, res) => {
   res.json({
     success: true,
     message: 'Password updated',
+  });
+};
+
+const updateAvatar = async (req, res) => {
+  const { fileKey: tmpKey } = req.body;
+  const userId = req.user.id;
+  if (!tmpKey.startsWith(`tmp/${userId}/`)) {
+    throw new ForbiddenException("File key doesn't belong to the current user");
+  }
+
+  const head = await validateS3File(tmpKey, {
+    allowedTypes: ALLOWED_TYPES.resume,
+    maxFileSize: MAX_FILE_SIZE.resume,
+  });
+  // filename from the filekey
+  // tmp/${userId}/xxxxx
+  const filename = tmpKey.slice(`tmp/${userId}/`.length);
+  const fileKey = `avatar/${userId}/${filename}`;
+
+  await copyObject(tmpKey, fileKey);
+
+  await deleteObject(tmpKey);
+
+  const user = await User.findById(userId).exec();
+  if (!user) {
+    throw new NotFoundException('User not found');
+  }
+  const oldAvatarKey = user.avatar;
+  user.avatar = fileKey;
+  await user.save();
+
+  if (oldAvatarKey && oldAvatarKey !== fileKey) {
+    deleteObject(oldAvatarKey).catch((err) => {
+      logger.warn('Failed to delete old avatar', { oldAvatarKey, err });
+    });
+  }
+
+  res.status(200).json({
+    success: true,
+    data: {
+      avatar: fileKey,
+    },
   });
 };
 
@@ -129,6 +158,7 @@ const UserController = {
   updateMe,
   getMe,
   updateMyPassword,
+  updateAvatar,
 };
 
 module.exports = UserController;
