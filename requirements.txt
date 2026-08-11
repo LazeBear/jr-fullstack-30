@@ -144,3 +144,17 @@ s3 -> lifecycle rules
 
 /avatars
 /resumes
+
+EC2
+pm2
+nginx
+node environment
+
+zip
+
+EB
+Elastic beanstalk
+
+Lambda serverless
+ECS/EKS docker/container
+

@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const config = require('../utils/config');
 
 const userSchema = new mongoose.Schema(
   {
@@ -65,6 +66,7 @@ const userSchema = new mongoose.Schema(
   {
     timestamps: true,
     toJSON: {
+      virtuals: true,
       transform(_, user) {
         delete user.password;
         delete user.__v;
@@ -74,6 +76,13 @@ const userSchema = new mongoose.Schema(
     },
   },
 );
+
+userSchema.virtual('avatarUrl').get(function () {
+  if (!this.avatar || !config.CLOUDFRONT_DOMAIN) {
+    return null;
+  }
+  return `https://${config.CLOUDFRONT_DOMAIN}/${this.avatar}`;
+});
 
 // email, fullName, displayName, password, role, field, goal, avatar,
 const User = mongoose.model('User', userSchema);

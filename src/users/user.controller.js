@@ -1,9 +1,10 @@
 const BadRequestException = require('../exceptions/badRequest.exception');
 const ForbiddenException = require('../exceptions/forbidden.exception');
 const NotFoundException = require('../exceptions/NotFound.exception');
+const { ALLOWED_TYPES, MAX_FILE_SIZE } = require('../upload/upload.validation');
 const logger = require('../utils/logger');
 const { hashPassword, comparePassword } = require('../utils/password');
-const { deleteObject } = require('../utils/s3');
+const { deleteObject, validateS3File, copyObject } = require('../utils/s3');
 const { MAX_PASSWORD_HISTORY } = require('./constants');
 const User = require('./user.model');
 // GET /v1/users/:id
@@ -79,8 +80,8 @@ const updateAvatar = async (req, res) => {
   }
 
   const head = await validateS3File(tmpKey, {
-    allowedTypes: ALLOWED_TYPES.resume,
-    maxFileSize: MAX_FILE_SIZE.resume,
+    allowedTypes: ALLOWED_TYPES.avatar,
+    maxFileSize: MAX_FILE_SIZE.avatar,
   });
   // filename from the filekey
   // tmp/${userId}/xxxxx

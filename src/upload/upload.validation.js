@@ -18,8 +18,8 @@ const EXTENSION_MAP = {
 };
 
 // /{category}/{user id}/ {uuid, random string}
-const KEY_PATTERN = /^(avatar|resume)\/[a-f0-9]{24}\/+$/;
-const TMP_KEY_PATTERN = /^tmp\/[a-f0-9]{24}\/+$/;
+const KEY_PATTERN = /^(avatar|resume)\/[a-f0-9]{24}\/[^/]+$/;
+const TMP_KEY_PATTERN = /^tmp\/[a-f0-9]{24}\/[^/]+$/;
 
 const presignedUploadSchema = z.object({
   fileName: z.string().trim().min(1),
