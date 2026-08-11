@@ -32,7 +32,7 @@ const register = async (req, res) => {
   // data
   // error
   const accessToken = signAccessToken({ id: user._id });
-  res.json({
+  res.status(201).json({
     success: true,
     data: {
       user,

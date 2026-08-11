@@ -158,3 +158,15 @@ Elastic beanstalk
 Lambda serverless
 ECS/EKS docker/container
 
+jest
+
+unit test
+integration test
+end to end test
+
+mock
+supertest
+mongodb-memory-server
+
+CI
+github actions
